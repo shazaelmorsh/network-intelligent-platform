@@ -112,6 +112,32 @@ def main():
                     st.session_state.question_input = question
                     st.rerun()
         
+        # Database overview/info box
+        st.info(
+            """
+            **Database Overview**  
+            - This database contains detailed information about **Mark Zuckerberg**, **Brad Gerstner**, and **Michael Dell**.  
+            - **Case Sensitive:** Names and IDs are case sensitive. Please use the exact spelling (e.g., "Mark Zuckerberg", not "mark zuckerberg").  
+
+            **Schema Highlights:**
+            - **Node Types:**
+                - `Person` (id, name)
+                - `Organization` (id)
+                - `Event` (id)
+                - `Thing` (id)
+                - `Document` (fileName, fileType, url, etc.)
+            - **Key Relationships:**
+                - `(:Person)-[:WORKSFOR]->(:Organization)`
+                - `(:Person)-[:KNOWS]->(:Person)`
+                - `(:Person)-[:ALUMNIOF]->(:Organization)`
+                - `(:Person)-[:ATTENDEE]->(:Event)`
+                - `(:Person)-[:SPONSOR]->(:Organization|:Person|:Event|:Thing)`
+                - `(:Person)-[:KNOWSABOUT]->(:Thing|:Organization|:Event)`
+                - ...and more (see documentation for full list)
+            - **Other Entities:** Documents, Chunks, Entities, EntityTypes, etc. are also present for advanced knowledge representation.
+            """,
+            icon="📚"
+        )
         # Main content
         st.header("🤔 Ask a Question")
         

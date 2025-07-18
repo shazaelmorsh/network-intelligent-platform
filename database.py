@@ -12,32 +12,6 @@ class DatabaseManager:
             enhanced_schema=True
         )
     
-    def setup_movie_data(self):
-        """Populate the database with movie data"""
-        movies_query = """
-        LOAD CSV WITH HEADERS FROM 
-        'https://raw.githubusercontent.com/tomasonjo/blog-datasets/main/movies/movies_small.csv'
-        AS row
-        MERGE (m:Movie {id:row.movieId})
-        SET m.released = date(row.released),
-            m.title = row.title,
-            m.imdbRating = toFloat(row.imdbRating)
-        FOREACH (director in split(row.director, '|') | 
-            MERGE (p:Person {name:trim(director)})
-            MERGE (p)-[:DIRECTED]->(m))
-        FOREACH (actor in split(row.actors, '|') | 
-            MERGE (p:Person {name:trim(actor)})
-            MERGE (p)-[:ACTED_IN]->(m))
-        FOREACH (genre in split(row.genres, '|') | 
-            MERGE (g:Genre {name:trim(genre)})
-            MERGE (m)-[:IN_GENRE]->(g))
-        """
-        
-        try:
-            self.graph.query(movies_query)
-            print("✅ Movie data successfully loaded into Neo4j")
-        except Exception as e:
-            print(f"❌ Error loading movie data: {e}")
     
     def refresh_schema(self):
         """Refresh the database schema"""
