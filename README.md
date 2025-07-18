@@ -1,5 +1,7 @@
 # Network Intelligent Platform
 
+[🌐 **Try the Streamlit App Live**](https://network-intelligent-platform.streamlit.app/)
+
 A sophisticated question-answering system over a Neo4j graph database using LangGraph for multi-step workflow management. This application can answer questions about people, organizations, and professional networking by converting natural language to Cypher queries and executing them against a Neo4j database.
 
 ## Features
@@ -90,7 +92,7 @@ Example questions:
 Ask a single question from the command line:
 
 ```bash
-python main.py "Who are the key contacts at Company XYZ?"
+python main.py "What does Michael Dell like?"
 ```
 
 
