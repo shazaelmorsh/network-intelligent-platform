@@ -1,0 +1,12 @@
+langchain
+langchain-neo4j
+langchain-openai
+langgraph
+python-dotenv
+neo4j
+pydantic
+typing-extensions
+flask
+streamlit
+
+
